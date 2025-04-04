@@ -1,0 +1,683 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+}
+
+/* Encabezado */
+header {
+    background: linear-gradient(90deg, #690e0e, #b11733);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 1s ease-out;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-title {
+    font-size: 24px;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Menú Hamburguesa */
+.menu-toggle {
+    display: none; /* Oculto por defecto */
+}
+
+.menu-icon {
+    display: none; /* Oculto en pantallas grandes */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* Navegación */
+.nav-menu {
+    display: flex;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #000000;
+    bottom: 0;
+    left: -100%;
+    transition: left 0.3s ease;
+}
+
+.nav-menu ul li a:hover::after {
+    left: 0;
+}
+
+.nav-menu ul li a:hover {
+    color: #b32727;
+}
+
+/* Banner Principal */
+#inicio.banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/fondobanner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 600px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inicio.banner h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6d091b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #b11733;
+}
+
+/* Productos y Ofertas */
+.products {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.products h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #6d091b;
+    text-decoration: underline;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-item p {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.btn-add {
+    display: inline-block;
+    background-color: #6d091b;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #b11733;
+    transform: translateY(-2px);
+}
+
+/* Contacto */
+#contacto.contact {
+    padding: 40px 15px;
+    background: linear-gradient(135deg, #f8f1f1 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
+}
+
+#contacto.contact::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(109, 9, 27, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+.contact-title {
+    font-size: 32px;
+    color: #6d091b;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: #d81b60;
+    bottom: -5px;
+    left: 25%;
+    transition: width 0.3s ease;
+}
+
+.contact-title:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.contact-subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    font-style: italic;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 100%;
+}
+
+.form-group {
+    position: relative;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #6d091b;
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: #fff;
+    padding: 0 5px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d81b60;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #6d091b;
+    box-shadow: 0 0 8px rgba(109, 9, 27, 0.3);
+    outline: none;
+}
+
+.form-message {
+    grid-column: span 2;
+}
+
+.form-message textarea {
+    min-height: 120px;
+    height: 100%;
+    resize: vertical;
+}
+
+.btn-submit {
+    grid-column: span 2;
+    padding: 10px 25px;
+    background: linear-gradient(90deg, #6d091b, #b11733);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-submit:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(109, 9, 27, 0.4);
+}
+
+.btn-submit:active {
+    transform: translateY(1px);
+}
+
+/* Pie de página */
+footer {
+    background-color: #f8f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content p {
+    font-size: 14px;
+    color: #555;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links li a {
+    text-decoration: none;
+    color: #6d091b;
+}
+
+.social-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-float:hover .whatsapp-icon {
+    transform: rotate(20deg);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.whatsapp-float {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Media Queries para Responsive */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-title {
+        font-size: 20px;
+    }
+
+    .menu-icon {
+        display: flex; /* Mostrar el ícono en móviles */
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(90deg, #690e0e, #b11733);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        transform: translateX(0); /* Mostrar menú cuando el checkbox está activado */
+    }
+
+    body {
+        padding-top: 80px; /* Ajuste para el header en móviles */
+    }
+
+    /* Banner */
+    #inicio.banner {
+        height: 400px;
+    }
+
+    #inicio.banner h2 {
+        font-size: 28px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    /* Productos y Ofertas */
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products h2 {
+        font-size: 24px;
+    }
+
+    /* Contacto */
+    .contact-container {
+        padding: 20px;
+    }
+
+    .contact-title {
+        font-size: 28px;
+    }
+
+    .contact-subtitle {
+        font-size: 14px;
+    }
+
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn-submit {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    .social-links {
+        gap: 10px;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+        position: fixed; /* Asumo que quieres que sea flotante, agrego esto */
+    }
+
+    /* Estilo base del ícono (para celulares) */
+    .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* Media query para pantallas más grandes (computadoras) */
+    @media (min-width: 768px) {
+        .whatsapp-icon {
+            width: 40px; /* Tamaño más grande para computadoras */
+            height: 40px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header */
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-title {
+        font-size: 18px;
+    }
+
+    .nav-menu ul {
+        gap: 10px;
+        font-size: 0.9em;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+
+    /* Banner */
+    #inicio.banner {
+        height: 300px;
+    }
+
+    #inicio.banner h2 {
+        font-size: 22px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* Productos y Ofertas */
+    .products {
+        padding: 20px 10px;
+    }
+
+    .products h2 {
+        font-size: 20px;
+    }
+
+    .product-item {
+        padding: 10px;
+    }
+
+    .product-item h3 {
+        font-size: 16px;
+    }
+
+    .product-item p {
+        font-size: 14px;
+    }
+
+    .btn-add {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    /* Contacto */
+    .contact-title {
+        font-size: 24px;
+    }
+
+    .contact-container {
+        padding: 15px;
+    }
+}

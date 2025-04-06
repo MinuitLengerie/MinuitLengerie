@@ -1,0 +1,593 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+hr{
+
+    border: 10px;
+    height: 2px;
+    size: 5px;;
+    background-color: #6d091b;
+    margin: 50px ;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* Asegurarse de que no haya márgenes ni padding en el body/html */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f8f1f1;
+    margin: 0;
+}
+
+/* Encabezado fijo */
+header {
+    background: linear-gradient(90deg, rgba(117, 2, 2, 0.637), #580707);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw; /* Ancho completo de la ventana */
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 1s ease-out;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-title {
+    font-size: 24px;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Menú Hamburguesa */
+.menu-toggle {
+    display: none; /* Oculto por defecto */
+    background: linear-gradient(90deg, rgba(117, 2, 2, 0.637), #580707);
+}
+
+.menu-icon {
+    display: none; /* Oculto en pantallas grandes */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* Navegación */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Oculto por defecto */
+    width: 100px;
+    height: 150px;
+    background: rgba(88, 7, 7, 0.411); /* Fondo oscuro semitransparente */
+    transition: left 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #000000;
+    bottom: 0;
+    left: -100%;
+    transition: left 0.3s ease;
+}
+
+.nav-menu ul li a:hover::after {
+    left: 0;
+}
+
+.nav-menu ul li a:hover {
+    color: #b32727;
+}
+/* Mostrar el menú cuando el checkbox está activado */
+#menu-toggle:checked ~ .nav-menu {
+    left: 0; /* Despliega el menú */
+}
+
+/* Animación del ícono de hamburguesa a "X" */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+#inicio.banner {
+    background-image: url(/assets/images/fondobanner.jpg);
+    background-size: cover; /* Cubre todo el contenedor, recortando si es necesario */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita */
+    width: 100vw; /* Usa el ancho completo de la ventana */
+    height: 600px; /* Altura fija */
+    margin: 0; /* Elimina márgenes */
+    padding: 20px; /* Mantengo el padding interno */
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Para que no interfiera con el header fijo */
+    top: 0; /* Asegura que no haya espacio arriba */
+}
+
+  
+#tituloelegancia {
+    font-size: 40px; /* Tamaño más grande pero manejable */
+    margin-bottom: 20px;
+    font-family: "Licorice", cursive; /* Solo una declaración de fuente con respaldo */
+    font-weight: 400;
+    font-style: normal;
+    color: #ffffff; /* Aseguro que el color sea visible contra el fondo */
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6d091b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #b11733;
+}
+
+/* Productos y Ofertas */
+.products {
+    padding: 20px;
+    text-align: center;
+}
+
+.products h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #6d091b;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-item p {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los botones de talle */
+.talle-options {
+    margin: 10px 0;
+}
+
+
+
+
+.talle-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #88212a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.talle-btn:hover {
+    background-color: #6d091b;
+}
+
+.talle-disabled {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    color: #999;
+    font-style: italic;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+/* Pie de página */
+footer {
+    background-color: hsla(0, 59%, 25%, 0.5);
+    padding: 20px;
+    text-align: center;
+    gap: 25px;
+}
+
+.footer-content p {
+    font-size: 14px;
+    color: #555;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links li a {
+    text-decoration: none;
+    color: #6d091b;
+}
+
+.social-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-float:hover .whatsapp-icon {
+    transform: rotate(20deg);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.whatsapp-float {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* Media Query para pantallas hasta 768px (tablets y móviles grandes) */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-title {
+        font-size: 20px;
+    }
+
+    .menu-icon {
+        display: flex; /* Mostrar ícono de hamburguesa */
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(90deg, #690e0e, #b11733);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        transform: translateX(0); /* Mostrar menú al activar checkbox */
+    }
+
+    /* Body */
+    body {
+        padding-top: 80px; /* Espacio para header fijo */
+    }
+
+    /* Banner */
+    #inicio.banner {
+        height: 400px;
+        width: 100vw;
+    }
+
+    #tituloelegancia { /* Corregí el ID y el tamaño */
+        font-size: 30px; /* Asumo que 300px fue un error */
+    }
+
+
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    /* Productos */
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products h2 {
+        font-size: 50px;
+    }
+
+    /* Contacto */
+    .contact-container {
+        padding: 20px;
+    }
+
+    .contact-title {
+        font-size: 28px;
+    }
+
+    .contact-subtitle {
+        font-size: 14px;
+    }
+
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn-submit {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    .social-links {
+        gap: 10px;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+/* Media Query para pantallas hasta 480px (móviles pequeños) */
+@media (max-width: 480px) {
+    /* Header */
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-title {
+        font-size: 18px;
+    }
+
+    .nav-menu ul {
+        gap: 10px;
+        font-size: 0.9em;
+    }
+
+    /* Body */
+    body {
+        padding-top: 70px;
+    }
+
+    /* Banner */
+    #inicio.banner {
+        height: 300px;
+        width: 100vw;
+    }
+
+    #tituloelegancia {
+        font-size: 50px; /* Ajuste adicional para pantallas pequeñas */
+    }
+
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* Productos */
+    .products {
+        padding: 20px 10px;
+    }
+
+    .products h2 {
+        font-size: 20px;
+    }
+
+    .product-item {
+        padding: 10px;
+    }
+
+    .product-item h3 {
+        font-size: 16px;
+    }
+
+    .product-item p {
+        font-size: 14px;
+    }
+
+    .btn-add {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    /* Contacto */
+    .contact-title {
+        font-size: 24px;
+    }
+
+    .contact-container {
+        padding: 15px;
+    }
+}
+
